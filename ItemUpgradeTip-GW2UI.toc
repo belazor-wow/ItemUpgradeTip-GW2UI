@@ -1,0 +1,7 @@
+## Interface: 100207
+## Title: ItemUpgradeTip (GW2 Skin)
+## Version: 1.0
+## Author: Belazor
+## RequiredDeps: ItemUpgradeTip, GW2_UI
+
+Main.lua
