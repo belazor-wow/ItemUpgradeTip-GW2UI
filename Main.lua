@@ -35,8 +35,9 @@ local skinners = {
             end)
         end
     end,
-    TrimScrollBar = function(frame)
-        GW.HandleTrimScrollBar(frame)
+    ScrollArea = function(frame)
+        GW.HandleTrimScrollBar(frame.ScrollBar)
+        GW.HandleScrollControls(frame, "ScrollBar")
     end,
     ContainerFrame = function(frame)
         SkinContainerFrame(frame)
