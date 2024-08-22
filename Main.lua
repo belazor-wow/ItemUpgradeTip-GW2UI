@@ -24,16 +24,6 @@ local skinners = {
     end,
     TabButton = function(frame, extraInfo)
         GW.HandleTabs(frame, true)
-
-        for _, tab in pairs(extraInfo.tabs) do
-            tab:HookScript("OnClick", function(self)
-                for _, t in pairs(extraInfo.tabs) do
-                    if t:GetName() ~= self:GetName() then
-                        t.hover:SetAlpha(0)
-                    end
-                end
-            end)
-        end
     end,
     ScrollArea = function(frame)
         GW.HandleTrimScrollBar(frame.ScrollBar)
