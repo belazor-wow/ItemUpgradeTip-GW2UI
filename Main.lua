@@ -23,7 +23,7 @@ local skinners = {
         GW.SkinTextBox(frame.Middle, frame.Left, frame.Right)
     end,
     TabButton = function(frame, extraInfo)
-        GW.HandleTabs(frame, true)
+        GW.HandleTabs(frame)
     end,
     ScrollArea = function(frame)
         GW.HandleTrimScrollBar(frame.ScrollBar)
