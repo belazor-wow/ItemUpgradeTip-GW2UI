@@ -6,16 +6,34 @@ local private = select(2, ...) ---@class PrivateNamespace
 
 local GW = GW2_ADDON
 
+GW.ItemUpgradeTipTabsAdded = 0
+
 local function SkinContainerFrame(frame)
     frame:GwStripTextures()
     GW.CreateFrameHeaderWithBody(frame, frame:GetTitleText(), "Interface/AddOns/GW2_UI/textures/character/worldmap-window-icon", {})
-    frame.gwHeader:ClearAllPoints()
-    frame.gwHeader:SetPoint("BOTTOMLEFT", frame, "TOPLEFT", 0, -25)
-    frame.gwHeader:SetPoint("BOTTOMRIGHT", frame, "TOPRIGHT", 0, -25)
+    frame.tex:SetTexture("Interface/AddOns/GW2_UI/textures/Auction/windowbg")
+	frame.tex:SetTexCoord(0, 1, 0, 0.74)
     frame.gwHeader.windowIcon:ClearAllPoints()
-    frame.gwHeader.windowIcon:SetPoint("CENTER", frame.gwHeader.BGLEFT, "LEFT", 21, -7)
+    frame.gwHeader.windowIcon:SetPoint("CENTER", frame.gwHeader, "LEFT", -26, 10)
+    frame:GetTitleText():SetPoint("BOTTOMLEFT", frame.gwHeader, "BOTTOMLEFT", 25, 10)
     frame.CloseButton:GwSkinButton(true)
     frame.CloseButton:SetPoint("TOPRIGHT", 0, 7)
+
+    CreateFrame("Frame", "IUTViewLeftPanel", frame, "GwWindowLeftPanel")
+
+    for index, tab in next, frame.Tabs do
+		if not tab.isSkinned then
+			local id = index == 5 and "profiles" or "overview"
+			local iconTexture = "Interface/AddOns/GW2_UI/textures/uistuff/tabicon_" .. id
+			GW.SkinSideTabButton(tab, iconTexture, tab:GetText())
+		end
+
+		tab:ClearAllPoints()
+		tab:SetPoint("TOPRIGHT", IUTViewLeftPanel, "TOPLEFT", 1, -32 + (-40 * GW.ItemUpgradeTipTabsAdded))
+		tab:SetParent(IUTViewLeftPanel)
+		tab:SetSize(64, 40)
+		GW.ItemUpgradeTipTabsAdded = GW.ItemUpgradeTipTabsAdded + 1
+	end
 end
 
 local skinners = {
@@ -23,24 +41,21 @@ local skinners = {
         GW.SkinTextBox(frame.Middle, frame.Left, frame.Right)
     end,
     TabButton = function(frame, extraInfo)
-        GW.HandleTabs(frame)
+        --GW.HandleTabs(frame)
     end,
     ScrollArea = function(frame)
         GW.HandleTrimScrollBar(frame.ScrollBar)
         GW.HandleScrollControls(frame, "ScrollBar")
+
+        hooksecurefunc(frame.ScrollBox, "Update", GW.HandleItemListScrollBoxHover)
+
+        GW.HandleItemListScrollBoxHover(frame.ScrollBox)
     end,
     ContainerFrame = function(frame)
         SkinContainerFrame(frame)
     end,
     NavBar = function(frame)
-        frame:GwStripTextures(true)
-        frame:SetPoint("TOPLEFT", -18, -15)
-
-        local p = frame:GetParent();
-        p.tex = p:CreateTexture(nil, "BACKGROUND", nil, 0)
-        p.tex:SetPoint("TOPLEFT", p, "TOPLEFT", -10, -6)
-        p.tex:SetPoint("BOTTOMRIGHT", p, "BOTTOMRIGHT", 0, 1)
-        p.tex:SetTexture("Interface/AddOns/GW2_UI/textures/character/paperdollbg")
+        GW.HandleSrollBoxHeaders(frame)
     end,
     NavBarButton = function(frame)
         frame:GwStripTextures()
@@ -61,12 +76,6 @@ local skinners = {
     end,
     InsetFrame = function(frame)
         frame:Hide()
-
-        local p = frame:GetParent();
-        p.tex = p:CreateTexture(nil, "BACKGROUND", nil, 0)
-        p.tex:SetPoint("TOPLEFT", p, "TOPLEFT", -10, -6)
-        p.tex:SetPoint("BOTTOMRIGHT", p, "BOTTOMRIGHT", 0, 1)
-        p.tex:SetTexture("Interface/AddOns/GW2_UI/textures/character/paperdollbg")
     end,
 }
 
