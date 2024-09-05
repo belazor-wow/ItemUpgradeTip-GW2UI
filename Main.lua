@@ -6,8 +6,6 @@ local private = select(2, ...) ---@class PrivateNamespace
 
 local GW = GW2_ADDON
 
-GW.ItemUpgradeTipTabsAdded = 0
-
 local function SkinContainerFrame(frame)
     frame:GwStripTextures()
     GW.CreateFrameHeaderWithBody(frame, frame:GetTitleText(), "Interface/AddOns/GW2_UI/textures/character/worldmap-window-icon", {})
@@ -21,6 +19,8 @@ local function SkinContainerFrame(frame)
 
     CreateFrame("Frame", "IUTViewLeftPanel", frame, "GwWindowLeftPanel")
 
+    local tabsAdded = 0
+
     for index, tab in next, frame.Tabs do
 		if not tab.isSkinned then
 			local id = index == 5 and "profiles" or "overview"
@@ -29,10 +29,10 @@ local function SkinContainerFrame(frame)
 		end
 
 		tab:ClearAllPoints()
-		tab:SetPoint("TOPRIGHT", IUTViewLeftPanel, "TOPLEFT", 1, -32 + (-40 * GW.ItemUpgradeTipTabsAdded))
+		tab:SetPoint("TOPRIGHT", IUTViewLeftPanel, "TOPLEFT", 1, -32 + (-40 * tabsAdded))
 		tab:SetParent(IUTViewLeftPanel)
 		tab:SetSize(64, 40)
-		GW.ItemUpgradeTipTabsAdded = GW.ItemUpgradeTipTabsAdded + 1
+		tabsAdded = tabsAdded + 1
 	end
 end
 
