@@ -15,7 +15,7 @@ local function SkinContainerFrame(frame)
     frame.gwHeader.windowIcon:SetPoint("CENTER", frame.gwHeader, "LEFT", -26, 10)
     frame:GetTitleText():SetPoint("BOTTOMLEFT", frame.gwHeader, "BOTTOMLEFT", 25, 10)
     frame.CloseButton:GwSkinButton(true)
-    frame.CloseButton:SetPoint("TOPRIGHT", 0, 7)
+    frame.CloseButton:SetPoint("TOPRIGHT", -5, -2)
 
     CreateFrame("Frame", "IUTViewLeftPanel", frame, "GwWindowLeftPanel")
 
