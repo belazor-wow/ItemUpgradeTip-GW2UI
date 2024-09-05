@@ -25,8 +25,6 @@ local function SkinContainerFrame(frame)
 
     CreateFrame("Frame", "IUTViewLeftPanel", frame, "GwWindowLeftPanel")
 
-    local tabsAdded = 0
-
     for index, tab in next, frame.Tabs do
 		if not tab.isSkinned then
 			local id = index == 5 and "profiles" or "overview"
@@ -35,10 +33,9 @@ local function SkinContainerFrame(frame)
 		end
 
 		tab:ClearAllPoints()
-		tab:SetPoint("TOPRIGHT", IUTViewLeftPanel, "TOPLEFT", 1, -32 + (-40 * tabsAdded))
+		tab:SetPoint("TOPRIGHT", IUTViewLeftPanel, "TOPLEFT", 1, -32 + (-40 * index))
 		tab:SetParent(IUTViewLeftPanel)
 		tab:SetSize(64, 40)
-		tabsAdded = tabsAdded + 1
 	end
 end
 
