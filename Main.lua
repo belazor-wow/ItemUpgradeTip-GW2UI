@@ -8,7 +8,13 @@ local GW = GW2_ADDON
 
 local function SkinContainerFrame(frame)
     frame:GwStripTextures()
-    GW.CreateFrameHeaderWithBody(frame, frame:GetTitleText(), "Interface/AddOns/GW2_UI/textures/character/worldmap-window-icon", {})
+    GW.CreateFrameHeaderWithBody(frame, frame:GetTitleText(), "Interface/AddOns/GW2_UI/textures/character/worldmap-window-icon", {
+        IUTView.MythicPlusFrame,
+        IUTView.RaidFrame,
+        IUTView.UpgradeFrame,
+        IUTView.CraftingFrame,
+        IUTView.InfoFrame
+    }, -10)
     frame.tex:SetTexture("Interface/AddOns/GW2_UI/textures/Auction/windowbg")
 	frame.tex:SetTexCoord(0, 1, 0, 0.74)
     frame.gwHeader.windowIcon:ClearAllPoints()
