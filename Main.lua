@@ -33,7 +33,7 @@ local function SkinContainerFrame(frame)
 		end
 
 		tab:ClearAllPoints()
-		tab:SetPoint("TOPRIGHT", IUTViewLeftPanel, "TOPLEFT", 1, -32 + (-40 * index))
+		tab:SetPoint("TOPRIGHT", IUTViewLeftPanel, "TOPLEFT", 1, -32 + (-40 * (index - 1)))
 		tab:SetParent(IUTViewLeftPanel)
 		tab:SetSize(64, 40)
 	end
