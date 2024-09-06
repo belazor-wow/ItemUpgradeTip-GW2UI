@@ -8,7 +8,7 @@ local GW = GW2_ADDON
 
 local function SkinContainerFrame(frame)
     frame:GwStripTextures()
-    GW.CreateFrameHeaderWithBody(frame, frame:GetTitleText(), "Interface/AddOns/GW2_UI/textures/character/worldmap-window-icon", {
+    GW.CreateFrameHeaderWithBody(frame, frame:GetTitleText(), "Interface/AddOns/ItemUpgradeTip-GW2UI/Textures/itemupgrade-window-icon", {
         IUTView.MythicPlusFrame,
         IUTView.RaidFrame,
         IUTView.UpgradeFrame,
@@ -27,8 +27,8 @@ local function SkinContainerFrame(frame)
 
     for index, tab in next, frame.Tabs do
 		if not tab.isSkinned then
-			local id = index == 5 and "profiles" or "overview"
-			local iconTexture = "Interface/AddOns/GW2_UI/textures/uistuff/tabicon_" .. id
+			local id = index == 1 and "quickjoin" or index == 2 and "raid" or index == 3 and "upgrade" or index == 4 and "craft" or index == 5 and "profiles" or "overview"
+			local iconTexture = "Interface/AddOns/ItemUpgradeTip-GW2UI/Textures/tabicon_" .. id
 			GW.SkinSideTabButton(tab, iconTexture, tab:GetText())
 		end
 
