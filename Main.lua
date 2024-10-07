@@ -14,7 +14,7 @@ local function SkinContainerFrame(frame)
         IUTView.UpgradeFrame,
         IUTView.CraftingFrame,
         IUTView.InfoFrame
-    }, -10)
+    }, -10, true, true)
     frame.tex:SetTexture("Interface/AddOns/GW2_UI/textures/Auction/windowbg")
 	frame.tex:SetTexCoord(0, 1, 0, 0.74)
     frame.gwHeader.windowIcon:ClearAllPoints()
@@ -24,8 +24,6 @@ local function SkinContainerFrame(frame)
     frame:GetBreadcrumb():SetTextColor(255 / 255, 241 / 255, 209 / 255)
     frame.CloseButton:GwSkinButton(true)
     frame.CloseButton:SetPoint("TOPRIGHT", -5, -2)
-
-    CreateFrame("Frame", "IUTViewLeftPanel", frame, "GwWindowLeftPanel")
 
     for index, tab in next, frame.Tabs do
 		if not tab.isSkinned then
