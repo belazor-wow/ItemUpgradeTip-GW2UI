@@ -1,4 +1,4 @@
-## Interface: 110007
+## Interface: 110100
 ## Title: ItemUpgradeTip (GW2 Skin)
 ## Notes: Styles ItemUpgradeTip using GW2_UI
 ## RequiredDeps: ItemUpgradeTip, GW2_UI
